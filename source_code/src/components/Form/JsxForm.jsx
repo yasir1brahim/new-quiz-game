@@ -6,6 +6,7 @@ import { FaHeart } from 'react-icons/fa'
 import fiftyImg from '@/assets/fifty.svg'
 import categoriesJSON from '@/assets/categories.json'
 import { useBoundStore } from '@/store/useBoundStore'
+import { useEffect, useState } from 'react'
 
 export default function JsxForm ({ handleInputs, nowQueries }) {
 	const { queries } = useBoundStore(state => state)
@@ -71,7 +72,7 @@ export default function JsxForm ({ handleInputs, nowQueries }) {
 				</fieldset>
 			</div>
 
-			<fieldset>
+			{/* <fieldset>
 				<legend className='text-lg font-semibold mb-2 mx-1'>Categories</legend>
 
 				<div className='grid grid-cols-4 sm:grid-cols-2 gap-2 h-full'>
@@ -88,7 +89,7 @@ export default function JsxForm ({ handleInputs, nowQueries }) {
 						</label>
 					))}
 				</div>
-			</fieldset>
+			</fieldset> */}
 		</>
 	)
 }

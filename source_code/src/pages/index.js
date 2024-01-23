@@ -1,32 +1,50 @@
-import Head from 'next/head'
-import MainHome from '@/components/Home/MainHome'
-import GameModes from '@/components/Home/GameModes'
-import Categories from '@/components/Home/Categories'
 import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import Head from 'next/head'
 
-export default function Main () {
-	useEffect(() => { window.onbeforeunload = () => null }, [])
+import PageLoading from '@/components/PageLoading'
+import PageError from '@/components/PageError'
+import PlayHeader from '@/components/Play/PlayHeader'
+import GameInfo from '@/components/Play/GameInfo'
+import Footer from '@/components/PageFooter'
+import Questions from '@/components/Questions/Questions'
 
+import queryValidator from '@/helpers/gameConfig'
+import categories from '@/assets/categories.json'
+import { useBoundStore } from '@/store/useBoundStore'
+import NewGameForm from '@/components/Form/NewGameForm'
+import playSound from '@/helpers/playSound'
+
+export default function Play () {
+	
+	const handlePlay = () => {
+		playSound('pop');
+		document.getElementById('newGameDialog')?.showModal();
+		// document.getElementById("start").addEventListener("click", closePlay);
+	
+	};
+	
+	  // Call handlePlay on page load
+	  useEffect(() => {
+		
+		handlePlay();
+	  }, []); // Empty dependency array ensures that the effect runs only once on mount
+	
 	return (
-		<>
-			<Head>
-				<title>Quizi</title>
-			</Head>
-			<MainHome />
-			<GameModes />
-			<Categories />
-			<style jsx global>
-				{`
-				#__next {
-					display: grid;
-	        grid-template-columns: 1fr;
-				}
-        @media (min-width: 1024px) {
-          #__next {
-            grid-template-columns: 1.4fr 1fr;
-          }
-			  `}
-			</style>
-		</>
+		<style jsx global>
+					{`
+					body {
+						background: url(play_bg.webp) center;
+						background-size: 100% 100%;
+						background-color: #e6c642;
+					}
+
+					@media (max-width: 1030px) {
+						body {
+							background-size: auto 100%;
+						}
+					}
+				`}
+				</style>
 	)
 }

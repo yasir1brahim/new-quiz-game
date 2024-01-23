@@ -41,24 +41,7 @@ export default async function getQuestions (topics, qNumber) {
 		})
 	}
 
-	const iaQuestions = fetch('/api/questions', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({ topics: messyTopics.slice(0, 3) })
-	}).then(res => res.json())
-		.then(data => {
-			if (data.statusCode >= 400) {
-				const error = new Error(data.message)
-				error.statusCode = data.status
-				throw error
-			} else return data
-		})
-		.catch(err => {
-			console.log(err)
-			throw err
-		})
+	
 
 	return iaQuestions
 		.then(iaQuestions => randomArray([

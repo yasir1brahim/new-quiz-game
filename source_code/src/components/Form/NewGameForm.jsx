@@ -14,6 +14,9 @@ export default function NewGameForm () {
 	const router = useRouter()
 	const dialog = useRef(null)
 
+
+	
+
 	useEffect(() => setNowQueries(queries), [queries])
 
 	useEffect(() => {
@@ -52,12 +55,17 @@ export default function NewGameForm () {
 		closeDialog()
 	}
 
-	function clickOutsideDialog (e) {
-		const rect = dialog.current.getBoundingClientRect()
+	function clickOutsideDialog(e) {
+		const rect = dialog.current.getBoundingClientRect();
 		if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) {
-			closeDialog()
+		  if (document.getElementById('nav-bar')) {
+			closeDialog();
+		  } else {
+			e.stopPropagation();
+		  }
 		}
-	}
+	  }
+	
 
 	function closeDialog () {
 		playSound('pop-down')
@@ -70,9 +78,24 @@ export default function NewGameForm () {
 		dialog.current.addEventListener('animationend', handleAnimationEnd)
 	}
 
+	useEffect(() => {
+		const navBarElement = document.getElementById('nav-bar');
+		const closeButton = document.getElementById('close-btn');
+		
+	
+	
+		if (navBarElement) {
+		  closeButton.style.display = 'block';
+		} else {
+		  closeButton.style.display = 'none';
+		  
+
+		}
+	  });
+
 	return (
 		<dialog ref={dialog} onClick={(e) => clickOutsideDialog(e)} id="newGameDialog" className='fixed top-1/2 w-5/6 sm:w-fit left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-slate-900 m-0 backdrop-blur-lg rounded-md py-9 px-8 md:px-11'>
-			<button className='absolute top-2 right-2 text-3xl hover:scale-110 transition-all' onClick={closeDialog} >
+			<button id="close-btn" className='absolute top-2 right-2 text-3xl hover:scale-110 transition-all' onClick={closeDialog} >
 				<IoCloseSharp />
 			</button>
 
@@ -81,7 +104,7 @@ export default function NewGameForm () {
 					<JsxForm handleInputs={handleInputs} nowQueries={nowQueries} />
 				</div>
 
-				<button type='submit' className='btn-primary uppercase py-3 px-6 w-full tracking-widest' onClick={(e) => handleSubmit(e)}>New game</button>
+				<button type='submit' id="start" className='btn-primary uppercase py-3 px-6 w-full tracking-widest' onClick={(e) => handleSubmit(e)}>New game</button>
 			</form>
 		</dialog >
 	)

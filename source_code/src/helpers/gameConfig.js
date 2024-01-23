@@ -7,6 +7,7 @@ const DEFAULT_TIME = 20
 const DEFAULT_QUESTIONS = 5
 const INFINITY_MODE = false
 const TIME_MODE = false
+const DEFAULT_CATEGORY = ['questionnaire']
 
 export default function queryValidator (query) {
 	const { questions, time, infinitymode, timemode, categories } = query
@@ -39,7 +40,7 @@ export default function queryValidator (query) {
 		const categoriesArrayFiltered = categoriesArray.filter(category => categoriesJSON.map(category => category.id).includes(category))
 		if (categoriesArrayFiltered.length > 0) urlQueries.categories = categoriesArrayFiltered
 		else urlQueries.categories = categoriesJSON.map(category => category.id)
-	} else urlQueries.categories = categoriesJSON.map(category => category.id)
+	} else urlQueries.categories = DEFAULT_CATEGORY
 
 	return urlQueries
 }

@@ -32,7 +32,7 @@ export default function GameInfo () {
 				<div className='bg-white p-2 rounded-md mt-2 flex justify-center gap-1 items-center' title='Mode'>
 					<span className='pt-[2px]'>{mode}</span>
 				</div>
-				<div className='bg-white p-2 rounded-md mt-2 grid grid-cols-2 gap-2 justify-items-center'>
+				{/* <div className='bg-white p-2 rounded-md mt-2 grid grid-cols-2 gap-2 justify-items-center'>
 					{queries.categories.map(category => {
 						const cat = categories.find(cat => cat.id === category)
 						return <Image key={category} title={cat.name} alt={cat.name}
@@ -42,7 +42,7 @@ export default function GameInfo () {
 							width={33} height={33}
 						/>
 					})}
-				</div>
+				</div> */}
 			</aside>
 
 			<style jsx global>
