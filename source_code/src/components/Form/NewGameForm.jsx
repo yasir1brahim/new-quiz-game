@@ -14,9 +14,6 @@ export default function NewGameForm () {
 	const router = useRouter()
 	const dialog = useRef(null)
 
-
-	
-
 	useEffect(() => setNowQueries(queries), [queries])
 
 	useEffect(() => {
@@ -55,17 +52,16 @@ export default function NewGameForm () {
 		closeDialog()
 	}
 
-	function clickOutsideDialog(e) {
-		const rect = dialog.current.getBoundingClientRect();
+	function clickOutsideDialog (e) {
+		const rect = dialog.current.getBoundingClientRect()
 		if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) {
-		  if (document.getElementById('nav-bar')) {
-			closeDialog();
-		  } else {
-			e.stopPropagation();
-		  }
+			if (document.getElementById('nav-bar')) {
+				closeDialog()
+			} else {
+				e.stopPropagation()
+			}
 		}
-	  }
-	
+	}
 
 	function closeDialog () {
 		playSound('pop-down')
@@ -79,19 +75,14 @@ export default function NewGameForm () {
 	}
 
 	useEffect(() => {
-		const navBarElement = document.getElementById('nav-bar');
-		const closeButton = document.getElementById('close-btn');
-		
-	
-	
+		const navBarElement = document.getElementById('nav-bar')
+		const closeButton = document.getElementById('close-btn')
 		if (navBarElement) {
-		  closeButton.style.display = 'block';
+			closeButton.style.display = 'block'
 		} else {
-		  closeButton.style.display = 'none';
-		  
-
+			closeButton.style.display = 'none'
 		}
-	  });
+	})
 
 	return (
 		<dialog ref={dialog} onClick={(e) => clickOutsideDialog(e)} id="newGameDialog" className='fixed top-1/2 w-5/6 sm:w-fit left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-slate-900 m-0 backdrop-blur-lg rounded-md py-9 px-8 md:px-11'>

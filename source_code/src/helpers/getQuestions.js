@@ -2,6 +2,8 @@ import offlineQuestions from '@/assets/questions.json'
 
 const randomArray = (arr) => arr.toSorted(() => 0.5 - Math.random())
 
+const iaQuestions = []
+
 export default async function getQuestions (topics, qNumber) {
 	const randomTopics = randomArray(topics)
 	const messyTopics = []
@@ -40,8 +42,6 @@ export default async function getQuestions (topics, qNumber) {
 			}, 1 * 1000)
 		})
 	}
-
-	
 
 	return iaQuestions
 		.then(iaQuestions => randomArray([

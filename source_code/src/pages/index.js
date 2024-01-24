@@ -16,20 +16,15 @@ import NewGameForm from '@/components/Form/NewGameForm'
 import playSound from '@/helpers/playSound'
 
 export default function Play () {
-	
 	const handlePlay = () => {
-		playSound('pop');
-		document.getElementById('newGameDialog')?.showModal();
+		playSound('pop')
+		document.getElementById('newGameDialog')?.showModal()
 		// document.getElementById("start").addEventListener("click", closePlay);
-	
-	};
-	
-	  // Call handlePlay on page load
-	  useEffect(() => {
-		
-		handlePlay();
-	  }, []); // Empty dependency array ensures that the effect runs only once on mount
-	
+	}
+		// Call handlePlay on page load
+		useEffect(() => {
+		handlePlay()
+		}, []) // Empty dependency array ensures that the effect runs only once on mount
 	return (
 		<style jsx global>
 					{`

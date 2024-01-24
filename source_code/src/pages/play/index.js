@@ -16,9 +16,6 @@ import { useBoundStore } from '@/store/useBoundStore'
 export default function Play () {
 	const { loading, error, getQuestions, setQueries } = useBoundStore(state => state)
 	const router = useRouter()
-
-
-	
 	useEffect(() => {
 		if (router.isReady) {
 			const validQuery = queryValidator(router.query)

@@ -8,26 +8,21 @@ import categories from '@/assets/categories.json'
 import playSound from '@/helpers/playSound'
 import { useBoundStore } from '@/store/useBoundStore'
 
-
 export default function Questions () {
-
 	const { questions, loading, loadingInfinity, currentQuestion, setCurrentQuestion, setUserAnswer, win, score, setWin, setScore, wildCards, useLivesCard, queries, getQuestions } = useBoundStore(state => state)
 	const [time, setTime] = useState(Number(queries.time))
 
-
-	
 	useEffect(() => {
-		const topic = questions[currentQuestion - 1]?.topic.toLowerCase();
-		const category = categories.find(cat => cat.name.toLowerCase() === topic);
+		const topic = questions[currentQuestion - 1]?.topic.toLowerCase()
+		const category = categories.find(cat => cat.name.toLowerCase() === topic)
 
 		if (category) {
-		const colors = category.colors;
+		const colors = category.colors
 		if (colors && colors.length > 0) {
-			const randomColor = colors[Math.floor(Math.random() * colors.length)];
-			document.body.style.backgroundColor = randomColor;
+			const randomColor = colors[Math.floor(Math.random() * colors.length)]
+			document.body.style.backgroundColor = randomColor
 		}
 		}
-
 
 		function shortcuts (e) {
 			if (!queries.infinitymode) {
@@ -85,7 +80,7 @@ export default function Questions () {
 			setScore(score + 1)
 			const topics = categories.filter(category => queries.categories.find(cat => cat === category.id)).map(cat => cat.name)
 			getQuestions(topics, 5, true)
-			console.log(score);
+			console.log(score)
 		}, 1000)
 	}
 
